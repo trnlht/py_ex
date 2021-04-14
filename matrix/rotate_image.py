@@ -25,17 +25,23 @@ def rotate_image_in_place(m):
 
     while layer_size > 1:
 
-        for j in range(i, size - i):
+        for j in range(i, size - i - 1):
 
             top = m[i][j]
-            left = m[size - i - 1][j]
-            bottom = m[size - i - 1][size - i - 1]
-            right = m[i][size - i - 1]
+            left = m[size - j - 1][i]
+            bottom = m[size - 1 - i][size - 1 - j]
+            right = m[j][size - 1 - i]
+
+            print("\ni = ", i, " j = ", j)
+            print("top = ", top)
+            print("left = ", left)
+            print("bottom ", bottom)
+            print("right = ", right)
 
             m[i][j] = left
-            m[size - i - 1][j] = bottom
-            m[size - i - 1][size - i - 1] = right
-            m[i][size - i - 1] = top
+            m[size - j - 1][i] = bottom
+            m[size - 1 - i][size - 1 - j] = right
+            m[j][size - 1 - i] = top
 
         i += 1
         layer_size -= 2
@@ -88,6 +94,23 @@ class RotateImageTester(unittest.TestCase):
         )
 
 class RotateImageInPlaceTester(unittest.TestCase):
+    def test_should_rotate_image_4x4_correctly(self):
+        self.assertEqual(
+                rotate_image_in_place(
+                    [
+                        [ 1,  2,  3,  4],
+                        [ 5,  6,  7,  8],
+                        [ 9, 10, 11, 12],
+                        [13, 14, 15, 16]
+                    ]
+                ),
+                [
+                        [13,  9,  5,  1],
+                        [14, 10,  6,  2],
+                        [15, 11,  7,  3],
+                        [16, 12,  8,  4]
+                ]
+        )
     def test_should_rotate_image_3x3_correctly(self):
         self.assertEqual(
                 rotate_image_in_place(
