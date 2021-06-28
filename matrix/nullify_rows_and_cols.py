@@ -1,6 +1,7 @@
 import unittest
 
 
+
 def nullify_rows_and_cols(m):
     """
     Nullify corresponding row and column of MxN matrix if element of matrix is equal to zero.
