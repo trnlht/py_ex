@@ -4,8 +4,11 @@ import unittest
 def replace_spaces(s):
     """
     Replace all spaces in string by string "%20".
+    
+    [CCI 1.3]
 
     :param s: string to modify.
+
     """
     return s.strip().replace(" ", "%20")
 

@@ -5,6 +5,7 @@ def is_permutation(str1, str2):
     """
     Check if str1 is a permutation of str2.
     Complexity: O(NlogN)
+    [CCI 1.2]
 
     :param str1: First string to check
     :param str2: Second string to check
@@ -20,6 +21,7 @@ def is_permutation_fast(str1, str2):
     Check if str1 is a permutation of str2.
     This version use additional array to store counters of chars.
     Complexity: O(N)
+    [CCI 1.2]
 
     :param str1: First string to check
     :param str2: Second string to check

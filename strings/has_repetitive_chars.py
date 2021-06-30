@@ -2,6 +2,14 @@ import unittest
 
 
 def has_repetitive_chars(s):
+    """
+    Проверяет, есть ли в строке повторяющиеся символы.
+    Использует дополнительную таблицу для хранения счётчиков символов.
+    Временная сложность: O(N)
+    [CCI 1.1]
+
+    :param s: Строка для проверки
+    """
     chars = [0 for i in range(128)]
 
     for ch in s:
@@ -13,6 +21,14 @@ def has_repetitive_chars(s):
     return False
 
 def has_repetitive_chars_sort(s):
+    """
+    Проверяет, есть ли в строке повторяющиеся символы.
+    Сортирует строку и смотрит соседние символы.
+    Временная сложность: O(Nlog(N))
+    [CCI 1.1]
+
+    :param s: Строка для проверки
+    """
     sorted_str = sorted(s)
 
     for i in range(len(sorted_str) - 1):
