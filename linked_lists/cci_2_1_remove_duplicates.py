@@ -3,7 +3,7 @@ from linked_list_tools import Node, create_linked_list_from_list, traverse
 from collections import defaultdict
 
 
-def remove_duplicates(head):
+def remove_duplicates(head: Node):
     """
     Removes duplicates from linked list.
     Complexity: O(N)

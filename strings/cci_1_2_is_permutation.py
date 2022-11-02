@@ -1,4 +1,5 @@
 import unittest
+from collections import defaultdict
 
 
 def is_permutation(str1, str2):
@@ -15,6 +16,7 @@ def is_permutation(str1, str2):
         return False
 
     return sorted(str1) == sorted(str2)
+
 
 def is_permutation_fast(str1, str2):
     """
@@ -36,13 +38,30 @@ def is_permutation_fast(str1, str2):
         char_counters[ord(ch)] += 1
 
     for ch in str2:
-
         char_counters[ord(ch)] -= 1
 
         if char_counters[ord(ch)] < 0:
             return False
 
     return True
+
+
+def is_permutation_dict(str1: str, str2: str):
+    if len(str1) != len(str2):
+        return False
+
+    char_counters = defaultdict(int)
+
+    for ch in str1:
+        char_counters[ch] += 1
+
+    for ch in str2:
+        char_counters[ch] -= 1
+        if char_counters[ch] < 0:
+            return False
+
+    return True
+
 
 class TestIsPermutation(unittest.TestCase):
 
@@ -63,6 +82,16 @@ class TestIsPermutation(unittest.TestCase):
         self.assertFalse(is_permutation_fast("abc", "bcd"))
         self.assertFalse(is_permutation_fast("", "bcd"))
         self.assertFalse(is_permutation_fast("gffdda", "gffdga"))
+
+    def test_is_permutation_dict(self):
+        self.assertTrue(is_permutation_dict("abc", "bca"))
+        self.assertTrue(is_permutation_dict("", ""))
+        self.assertTrue(is_permutation_dict("43bcef", "34cbfe"))
+
+        self.assertFalse(is_permutation_dict("abc", "bcd"))
+        self.assertFalse(is_permutation_dict("", "bcd"))
+        self.assertFalse(is_permutation_dict("gffdda", "gffdga"))
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
