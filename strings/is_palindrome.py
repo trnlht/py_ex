@@ -23,6 +23,7 @@ def is_palindrome(s):
 
     return True
 
+
 def is_palindrome_alpha(s):
     """
     Check if string is a palindrome or not. Only letters count.
@@ -39,9 +40,11 @@ def is_palindrome_alpha(s):
     j = len(s) - 1
 
     while (i < j):
+        # Find first letter from left
         while (not s[i].isalpha()) and (i < j):
             i += 1
 
+        # Find first letter from right
         while (not s[j].isalpha()) and (i < j):
             j -= 1
 
@@ -52,6 +55,23 @@ def is_palindrome_alpha(s):
 
     return True
 
+
+def is_palindrome_simple(s: str):
+    if not s:
+        return True
+
+    i = 0
+    j = len(s) - 1
+
+    while i < j:
+        if s[i] != s[j]:
+            return False
+        i += 1
+        j -= 1
+
+    return True
+
+
 class TestIsPalindrome(unittest.TestCase):
 
     def test_is_palindrome(self):
@@ -60,7 +80,15 @@ class TestIsPalindrome(unittest.TestCase):
         self.assertTrue(is_palindrome("abccba"))
 
         self.assertFalse(is_palindrome("abcdef")) 
-        self.assertFalse(is_palindrome("abcdba")) 
+        self.assertFalse(is_palindrome("abcdba"))
+
+    def test_is_palindrome_simple(self):
+        self.assertTrue(is_palindrome_simple("abcba"))
+        self.assertTrue(is_palindrome_simple(""))
+        self.assertTrue(is_palindrome_simple("abccba"))
+
+        self.assertFalse(is_palindrome_simple("abcdef"))
+        self.assertFalse(is_palindrome_simple("abcdba"))
 
     def test_is_palindrome_alpha(self):
         self.assertTrue(is_palindrome_alpha("abcba"))
@@ -80,6 +108,7 @@ class TestIsPalindrome(unittest.TestCase):
         self.assertFalse(is_palindrome_alpha("abc///dba")) 
         self.assertFalse(is_palindrome_alpha("///ba")) 
         self.assertFalse(is_palindrome_alpha("ab/gf//ba")) 
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
